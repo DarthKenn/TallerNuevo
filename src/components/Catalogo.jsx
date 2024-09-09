@@ -34,7 +34,6 @@ const Catalogo = () => {
     const resultados = productos.filter(producto =>
       producto.nombre.toLowerCase().includes(terminoMinuscula) ||
       producto.categoria.toLowerCase().includes(terminoMinuscula) ||
-      producto.marca.toLowerCase().includes(terminoMinuscula) ||
       producto.precio.toString().includes(terminoMinuscula)
     );
 
@@ -144,9 +143,6 @@ const Catalogo = () => {
             onChange={(e) => setBusqueda(e.target.value)}
             style={{ width: '100%' }} 
           />
-          {busqueda.trim() !== '' && (
-            <button className="btn btn-outline-primary ms-2" onClick={limpiarBusqueda}>Limpiar</button>
-          )}
         </div>
         <div className="btn-group">
           <button className={`btn btn-outline-primary ${ordenCampo === 'nombre' ? 'active' : ''}`} onClick={() => ordenarProductos('nombre')}>

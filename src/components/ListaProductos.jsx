@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ListaProductos = ({ productos, eliminarProducto, editarProducto, agregarAlCarrito }) => {
+const ListaProductos = ({ productos, eliminarProducto, editarProducto, }) => {
   const [productosSeleccionados, setProductosSeleccionados] = useState([]);
   const [descripcionVisible, setDescripcionVisible] = useState(null);
 
@@ -29,16 +29,6 @@ const ListaProductos = ({ productos, eliminarProducto, editarProducto, agregarAl
 
   const descripcionActiva = (id) => {
     return descripcionVisible === id;
-  };
-
-  const calcularTotalSeleccionado = () => {
-    return productos.reduce((total, producto) => {
-      if (Seleccionado(producto.id)) {
-        const precioNumerico = parseFloat(producto.precio);
-        return total + precioNumerico;
-      }
-      return total;
-    }, 0);
   };
 
   return (
@@ -73,18 +63,6 @@ const ListaProductos = ({ productos, eliminarProducto, editarProducto, agregarAl
           </li>
         ))}
       </ul>
-      <div className="mt-3">
-        <h4>Carrito de Compras</h4>
-        <p>Total de productos seleccionados: {productosSeleccionados.length}</p>
-        <ul className="list-group">
-          {productos.filter(producto => Seleccionado(producto.id)).map(producto => (
-            <li key={producto.id} className="list-group-item">
-              <strong>{producto.nombre}</strong> - ${producto.precio}
-            </li>
-          ))}
-        </ul>
-        <p>Total: ${calcularTotalSeleccionado()}</p>
-      </div>
     </div>
   );
 };
